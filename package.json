@@ -1,0 +1,22 @@
+{
+    "name": "ats",
+    "version": "1.0.0",
+    "description": "ATS CareWare PoC",
+    "main": "ats.js",
+    "dependencies": {
+        "express-validation": "^1.0.2",
+        "joi": "^13.0.0"
+    },
+    "oracleMobile": {
+        "dependencies": {
+            "apis": {},
+            "connectors": {
+                "/mobile/connector/atscareware": "1.0"
+            }
+        },
+        "configuration": {
+            "node": "6.10"
+        }
+    }
+
+}
