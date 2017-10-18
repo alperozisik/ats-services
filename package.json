@@ -2,9 +2,10 @@
   "name": "ats",
   "version": "1.0.0",
   "description": "ATS CareWare PoC",
-  "main": "ats.js",
+  "main": "index.js",
   "dependencies": {
     "express-validation": "^1.0.2",
+    "fs-extra": "^4.0.2",
     "joi": "^13.0.0"
   },
   "oracleMobile": {

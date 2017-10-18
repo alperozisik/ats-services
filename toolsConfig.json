@@ -1,93 +1,93 @@
 {
-    "apiName": "ats",
-    "apiVersion": "1.0",
-    "apiId": "0ccc99a8-bb4d-4dbc-9746-6d089230bcea",
-    "baseUrl": "https://smartface-mobilebel.mobileenv.em2.oraclecloud.com:443/",
-    "authorization": {
-        "mobileBackendID": "29c84b1c-8456-4a2e-894c-bbb22b98e1f7",
-        "anonymousKey": "TU9CSUxFQkVMX1NNQVJURkFDRV9NT0JJTEVfQU5PTllNT1VTX0FQUElEOmZzOXEzakltbm9iX2hw        ",
-        "oauth": {
-            "tokenEndpoint": "https://mobilebel.identity.europe.oraclecloud.com/oam/oauth2/tokens",
-            "clientId": "26632bea-3982-44cf-8f71-bf9103856b71",
-            "clientSecret": "VAfGgozUcGzZTWGjAYC5"
-        }
-    },
-    "container": {
-        "oracleMobileApiName": "OracleMobileAPI",
-        "port": 4000
-    },
-    "deploy": {
-        "tempDirectory": "/tmp/mcs-deploy"
-    },
-    "tests": {
-        "postPatientLogin": {
-            "method": "POST",
-            "resource": "/patient/login",
-            "payload": {
-                "username": "smartface",
-                "password": "123456",
-                "deviceType": "iOS",
-                "notificationToken": "1"
-            }
-        },
-        "getAppointmentAvailableClinicNoDoctorIdYearMonthDay": {
-            "method": "GET",
-            "resource": "/appointment/available/:clinicNo/:doctorId/:yearMonth/:day",
-            "uriParameters": {
-                "clinicNo": "<PARAMETER_VALUE>",
-                "doctorId": "<PARAMETER_VALUE>",
-                "yearMonth": "<PARAMETER_VALUE>",
-                "day": "<PARAMETER_VALUE>"
-            }
-        },
-        "getLabResultsOrderNo": {
-            "method": "GET",
-            "resource": "/lab/results/:orderNo",
-            "uriParameters": {
-                "orderNo": "<PARAMETER_VALUE>"
-            }
-        },
-        "getClinicClinicNoDoctors": {
-            "method": "GET",
-            "resource": "/clinic/:clinicNo/doctors",
-            "uriParameters": {
-                "clinicNo": "<PARAMETER_VALUE>"
-            }
-        },
-        "getPatientPatientIdTimeline": {
-            "method": "GET",
-            "resource": "/patient/:patientId/timeline",
-            "uriParameters": {
-                "patientId": "<PARAMETER_VALUE>"
-            }
-        },
-        "getAppointmentPeriod": {
-            "method": "GET",
-            "resource": "/appointment/period"
-        },
-        "getPatientPatientId": {
-            "method": "GET",
-            "resource": "/patient/:patientId",
-            "uriParameters": {
-                "patientId": "<PARAMETER_VALUE>"
-            }
-        },
-        "getClinic": {
-            "method": "GET",
-            "resource": "/clinic"
-        },
-        "getAppointmentCategory": {
-            "method": "GET",
-            "resource": "/appointment/category"
-        },
-        "getAppointmentAvailableClinicNoDoctorIdYearMonth": {
-            "method": "GET",
-            "resource": "/appointment/available/:clinicNo/:doctorId/:yearMonth",
-            "uriParameters": {
-                "clinicNo": "<PARAMETER_VALUE>",
-                "doctorId": "<PARAMETER_VALUE>",
-                "yearMonth": "<PARAMETER_VALUE>"
-            }
-        }
-    }
+	"apiName": "ats",
+	"apiVersion": "1.0",
+	"apiId": "0ccc99a8-bb4d-4dbc-9746-6d089230bcea",
+	"baseUrl": "https://smartface-mobilebel.mobileenv.em2.oraclecloud.com:443/",
+	"authorization": {
+		"mobileBackendID": "29c84b1c-8456-4a2e-894c-bbb22b98e1f7",
+		"anonymousKey": "TU9CSUxFQkVMX1NNQVJURkFDRV9NT0JJTEVfQU5PTllNT1VTX0FQUElEOmZzOXEzakltbm9iX2hw        ",
+		"oauth": {
+			"tokenEndpoint": "https://mobilebel.identity.europe.oraclecloud.com/oam/oauth2/tokens",
+			"clientId": "26632bea-3982-44cf-8f71-bf9103856b71",
+			"clientSecret": "VAfGgozUcGzZTWGjAYC5"
+		}
+	},
+	"container": {
+		"oracleMobileApiName": "OracleMobileAPI",
+		"port": 4000
+	},
+	"deploy": {
+		"tempDirectory": "/tmp/mcs-deploy"
+	},
+	"tests": {
+		"getAppointmentAvailableClinicNoDoctorIdYearMonthDay": {
+			"method": "GET",
+			"resource": "/appointment/available/:clinicNo/:doctorId/:yearMonth/:day",
+			"uriParameters": {
+				"clinicNo": "<PARAMETER_VALUE>",
+				"doctorId": "<PARAMETER_VALUE>",
+				"yearMonth": "<PARAMETER_VALUE>",
+				"day": "<PARAMETER_VALUE>"
+			}
+		},
+		"getClinic": {
+			"method": "GET",
+			"resource": "/clinic"
+		},
+		"getAppointmentAvailableClinicNoDoctorIdYearMonth": {
+			"method": "GET",
+			"resource": "/appointment/available/:clinicNo/:doctorId/:yearMonth",
+			"uriParameters": {
+				"clinicNo": "<PARAMETER_VALUE>",
+				"doctorId": "<PARAMETER_VALUE>",
+				"yearMonth": "<PARAMETER_VALUE>"
+			}
+		},
+		"postPatientLogin": {
+			"method": "POST",
+			"resource": "/patient/login",
+			"payload": {
+				"username": "smartface",
+				"password": "123456",
+				"deviceType": "iOS",
+				"notificationToken": "1"
+			}
+		},
+		"getAppointmentCategory": {
+			"method": "GET",
+			"resource": "/appointment/category"
+		},
+		"getAppointmentPeriod": {
+			"method": "GET",
+			"resource": "/appointment/period"
+		},
+		"getPatientPatientId": {
+			"method": "GET",
+			"resource": "/patient/:patientId",
+			"uriParameters": {
+				"patientId": "<PARAMETER_VALUE>"
+			}
+		},
+		"getLabResultsOrderNo": {
+			"method": "GET",
+			"resource": "/lab/results/:orderNo",
+			"uriParameters": {
+				"orderNo": "<PARAMETER_VALUE>"
+			}
+		},
+		"getPatientPatientIdTimeline": {
+			"method": "GET",
+			"resource": "/patient/:patientId/timeline",
+			"uriParameters": {
+				"patientId": "<PARAMETER_VALUE>"
+			}
+		},
+		"getClinicClinicNoDoctors": {
+			"method": "GET",
+			"resource": "/clinic/:clinicNo/doctors",
+			"uriParameters": {
+				"clinicNo": "<PARAMETER_VALUE>"
+			}
+		}
+	}
 }

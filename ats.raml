@@ -442,6 +442,16 @@ mediaType: "application/json"
       Creates a new appointment
       
     protocols: [HTTPS]
+    responses:
+      404:
+        body:
+          application/json:
+            example: |
+              {
+              	"message": "ORA-01403: no data found",
+              	"isPrevent": null
+              }
+              
   /category:
     displayName: Get list of appointment categories
     get:
@@ -485,9 +495,39 @@ mediaType: "application/json"
                 	"categoryCode": "28",
                 	"categoryDesc": "In Followup"
                 }]
+                
   /period:
     displayName: Get list of appointment periods
     get:
+      queryParameters:
+        language:
+          displayName: language
+          type: string
+          enum: ['en','tr']
+          default: en
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                [{
+                	"periodNo": "372",
+                	"periodCode": "1",
+                	"periodDesc": "Morninig"
+                }, {
+                	"periodNo": "373",
+                	"periodCode": "2",
+                	"periodDesc": "Afternoon"
+                }, {
+                	"periodNo": "374",
+                	"periodCode": "3",
+                	"periodDesc": "Evening"
+                }, {
+                	"periodNo": "22234",
+                	"periodCode": "4",
+                	"periodDesc": "Night"
+                }]
+                
   /available:
     /{clinicNo}:
       uriParameters:
@@ -514,6 +554,128 @@ mediaType: "application/json"
             description: |
               Gets list of available dates for a doctor in given year-month
               
+            responses:
+              200:
+                body:
+                  application/json:
+                    example: |
+                      [{
+                      	"monthDay": 1,
+                      	"apptCount": 4,
+                      	"apptReserved": 0,
+                      	"apptAvailable": 4
+                      }, {
+                      	"monthDay": 2,
+                      	"apptCount": 4,
+                      	"apptReserved": 0,
+                      	"apptAvailable": 4
+                      }, {
+                      	"monthDay": 3,
+                      	"apptCount": 4,
+                      	"apptReserved": 0,
+                      	"apptAvailable": 4
+                      }, {
+                      	"monthDay": 4,
+                      	"apptCount": 4,
+                      	"apptReserved": 0,
+                      	"apptAvailable": 4
+                      }, {
+                      	"monthDay": 7,
+                      	"apptCount": 4,
+                      	"apptReserved": 0,
+                      	"apptAvailable": 4
+                      }, {
+                      	"monthDay": 8,
+                      	"apptCount": 4,
+                      	"apptReserved": 0,
+                      	"apptAvailable": 4
+                      }, {
+                      	"monthDay": 9,
+                      	"apptCount": 4,
+                      	"apptReserved": 0,
+                      	"apptAvailable": 4
+                      }, {
+                      	"monthDay": 10,
+                      	"apptCount": 4,
+                      	"apptReserved": 0,
+                      	"apptAvailable": 4
+                      }, {
+                      	"monthDay": 11,
+                      	"apptCount": 4,
+                      	"apptReserved": 0,
+                      	"apptAvailable": 4
+                      }, {
+                      	"monthDay": 14,
+                      	"apptCount": 4,
+                      	"apptReserved": 0,
+                      	"apptAvailable": 4
+                      }, {
+                      	"monthDay": 15,
+                      	"apptCount": 4,
+                      	"apptReserved": 0,
+                      	"apptAvailable": 4
+                      }, {
+                      	"monthDay": 16,
+                      	"apptCount": 4,
+                      	"apptReserved": 0,
+                      	"apptAvailable": 4
+                      }, {
+                      	"monthDay": 17,
+                      	"apptCount": 4,
+                      	"apptReserved": 0,
+                      	"apptAvailable": 4
+                      }, {
+                      	"monthDay": 18,
+                      	"apptCount": 4,
+                      	"apptReserved": 0,
+                      	"apptAvailable": 4
+                      }, {
+                      	"monthDay": 21,
+                      	"apptCount": 4,
+                      	"apptReserved": 0,
+                      	"apptAvailable": 4
+                      }, {
+                      	"monthDay": 22,
+                      	"apptCount": 4,
+                      	"apptReserved": 0,
+                      	"apptAvailable": 4
+                      }, {
+                      	"monthDay": 23,
+                      	"apptCount": 4,
+                      	"apptReserved": 0,
+                      	"apptAvailable": 4
+                      }, {
+                      	"monthDay": 24,
+                      	"apptCount": 4,
+                      	"apptReserved": 0,
+                      	"apptAvailable": 4
+                      }, {
+                      	"monthDay": 25,
+                      	"apptCount": 4,
+                      	"apptReserved": 0,
+                      	"apptAvailable": 4
+                      }, {
+                      	"monthDay": 28,
+                      	"apptCount": 4,
+                      	"apptReserved": 0,
+                      	"apptAvailable": 4
+                      }, {
+                      	"monthDay": 29,
+                      	"apptCount": 4,
+                      	"apptReserved": 0,
+                      	"apptAvailable": 4
+                      }, {
+                      	"monthDay": 30,
+                      	"apptCount": 4,
+                      	"apptReserved": 0,
+                      	"apptAvailable": 4
+                      }, {
+                      	"monthDay": 31,
+                      	"apptCount": 4,
+                      	"apptReserved": 0,
+                      	"apptAvailable": 4
+                      }]
+                      
           /{day}:
             uriParameters:
               day:
@@ -523,3 +685,72 @@ mediaType: "application/json"
             get:
               description: |
                 Gets list of available times in given date
+                
+              headers:
+                language:
+                  displayName: language
+                  type: string
+                  enum: ['en','ar']
+                  default: en
+              responses:
+                200:
+                  body:
+                    application/json:
+                      example: |
+                        [{
+                        	"slotTimeFrom": "08:00",
+                        	"slotTimeTo": "08:30",
+                        	"periodDesc": "Morninig",
+                        	"resourceId": "3",
+                        	"slotSerial": "445120",
+                        	"periodPart": "372"
+                        }, {
+                        	"slotTimeFrom": "08:30",
+                        	"slotTimeTo": "09:00",
+                        	"periodDesc": "Morninig",
+                        	"resourceId": "3",
+                        	"slotSerial": "445121",
+                        	"periodPart": "372"
+                        }, {
+                        	"slotTimeFrom": "09:00",
+                        	"slotTimeTo": "09:30",
+                        	"periodDesc": "Morninig",
+                        	"resourceId": "3",
+                        	"slotSerial": "445122",
+                        	"periodPart": "372"
+                        }, {
+                        	"slotTimeFrom": "09:30",
+                        	"slotTimeTo": "10:00",
+                        	"periodDesc": "Morninig",
+                        	"resourceId": "3",
+                        	"slotSerial": "445123",
+                        	"periodPart": "372"
+                        }, {
+                        	"slotTimeFrom": "10:00",
+                        	"slotTimeTo": "10:30",
+                        	"periodDesc": "Morninig",
+                        	"resourceId": "3",
+                        	"slotSerial": "445124",
+                        	"periodPart": "372"
+                        }, {
+                        	"slotTimeFrom": "10:30",
+                        	"slotTimeTo": "11:00",
+                        	"periodDesc": "Morninig",
+                        	"resourceId": "3",
+                        	"slotSerial": "445125",
+                        	"periodPart": "372"
+                        }, {
+                        	"slotTimeFrom": "11:00",
+                        	"slotTimeTo": "11:30",
+                        	"periodDesc": "Morninig",
+                        	"resourceId": "3",
+                        	"slotSerial": "445126",
+                        	"periodPart": "372"
+                        }, {
+                        	"slotTimeFrom": "11:30",
+                        	"slotTimeTo": "12:00",
+                        	"periodDesc": "Morninig",
+                        	"resourceId": "3",
+                        	"slotSerial": "445127",
+                        	"periodPart": "372"
+                        }]
