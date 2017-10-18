@@ -1,22 +1,26 @@
 {
-    "name": "ats",
-    "version": "1.0.0",
-    "description": "ATS CareWare PoC",
-    "main": "ats.js",
+  "name": "ats",
+  "version": "1.0.0",
+  "description": "ATS CareWare PoC",
+  "main": "ats.js",
+  "dependencies": {
+    "express-validation": "^1.0.2",
+    "joi": "^13.0.0"
+  },
+  "oracleMobile": {
     "dependencies": {
-        "express-validation": "^1.0.2",
-        "joi": "^13.0.0"
+      "apis": {},
+      "connectors": {
+        "/mobile/connector/atscareware": "1.0"
+      }
     },
-    "oracleMobile": {
-        "dependencies": {
-            "apis": {},
-            "connectors": {
-                "/mobile/connector/atscareware": "1.0"
-            }
-        },
-        "configuration": {
-            "node": "6.10"
-        }
+    "configuration": {
+      "node": "6.10"
     }
-
+  },
+  "scripts": {
+    "run": "mcs-ccc ./toolsConfig.json --verbose",
+    "deploy": "mcs-deploy ./toolsConfig.json",
+    "test-postPatientLogin": "mcs-test ./toolsConfig.json postPatientLogin --verbose"
+  }
 }

@@ -4,10 +4,7 @@
  * @see {@link http://expressjs.com/3x/api.html#app}
  */
 
-const connectorName = "atscareware";
-const validation = require("./validation");
-const validate = require('express-validation');
-const copy = require("./lib/copy");
+
 /**
  * Mobile Cloud custom code service entry point.
  * @param {external:ExpressApplicationObject}
@@ -15,57 +12,19 @@ const copy = require("./lib/copy");
  */
 module.exports = function(service) {
 
-
     /**
      *  The file samples.txt in the archive that this file was packaged with contains some example code.
      */
-    service.post('/mobile/custom/ats/patient/login', validate(validation.login), function(req, res) {
-        var result = {};
-        var oracleMobile = req.oracleMobile;
-        var password = req.body.password;
-        var nickname = req.body.username;
-        var token = req.body.notificationToken || "";
-        var osCode = req.body.deviceType === "iOS" ? 1 : 2;
-
-
-        oracleMobile.connectors.get(connectorName, `loginWS/login/1/${password}/${nickname}/${token}/${osCode}`)
-            .then(
-                function(result) {
-                    var body = genericBodyHandler(result.result);
-                    if (body.result === 0) {
-                        res.send(401, body);
-                    } else
-                        res.send(200, body);
-                },
-                function(error) {
-                    var body = error.error;
-                    switch (error.statusCode) {
-                        case 500:
-                            res.send(error.statusCode, body);
-                            break;
-                        default:
-                            res.send(401, body);
-                            break;
-                    }
-
-                }
-            );
-
-
+    service.use(function(err, req, res, next) {
+        if (typeof err === "object" && err.status === 400 && err.statusText && err.errors) {
+            var err2 = JSON.parse(JSON.stringify(err));
+            err2.result = 0;
+            res.send(err2.status, err2);
+        }
+        else
+            next(err);
     });
 
-    try {
-        service.use(function(err, req, res, next) {
-            if (typeof err === "object" && err.status === 400 && err.statusText && err.errors) {
-                var err2 = JSON.parse(JSON.stringify(err));
-                err2.result = 0;
-                res.send(err2.status, err2);
-            } else
-                next(err);
-        });
-    } catch (ex) {
-        console.error(`cannot init service.use:\n${ex}`);
-    }
 
     service.get('/mobile/custom/ats/appointment/available/:clinicNo/:doctorId/:yearMonth/:day', function(req, res) {
         var result = {};
@@ -81,7 +40,7 @@ module.exports = function(service) {
             if (acceptType == 'application/json') {
                 result = [{
                     "testId": "51476",
-                    "testName": "CULTURE\u0026SENSITIVITY GENITAL FEMALE",
+                    "testName": "CULTURE&SENSITIVITY GENITAL FEMALE",
                     "result": "View Details",
                     "isDetailed": 1,
                     "resultDetails": "NORMAL VAGINAL FLORA ,GROWTH RATE: Scanty growth of, COLONY COUNT: 10^3 CFU/ml of\n",
@@ -374,7 +333,7 @@ module.exports = function(service) {
                 }, {
                     "clinicNo": "433",
                     "clinicCode": "GYN",
-                    "clinicDesc": "Obst \u0026 Gyne Clinic"
+                    "clinicDesc": "Obst & Gyne Clinic"
                 }, {
                     "clinicNo": "451",
                     "clinicCode": "PEDI01",
@@ -468,27 +427,3 @@ module.exports = function(service) {
     });
 
 };
-
-function genericBodyHandler(body) {
-    var body2 = copy(body);
-    if (typeof body === "string") {
-        try {
-            body2 = JSON.parse(body);
-        } catch (ex) {}
-    }
-
-    if (typeof body2.result === "string")
-        body2.result = parseInt(body2.result, 10);
-    if (body2.error === "null")
-        body2.error = null;
-    if (typeof body.errors === "undefined") {
-        if (typeof body.error) {
-            body.errors = [{ messages: [body.error] }];
-        } else {
-            body.errors = [];
-        }
-        delete body.error;
-    }
-
-    return body2;
-}

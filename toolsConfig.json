@@ -89,15 +89,5 @@
                 "yearMonth": "<PARAMETER_VALUE>"
             }
         }
-    },
-    "proxy": {
-        "http": {
-            "host": "https://smartface-mobilebel.mobileenv.em2.oraclecloud.com/mobile/connector/atscareware",
-            "port": 80
-        },
-        "https": {
-            "host": "https://smartface-mobilebel.mobileenv.em2.oraclecloud.com/mobile/connector/atscareware",
-            "port": 443
-        }
     }
 }
