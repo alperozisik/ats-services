@@ -57,7 +57,6 @@ mediaType: "application/json"
           21212
           
         required: true
-        default: 21212
     get:
       description: |
         Gets patient info
@@ -101,6 +100,7 @@ mediaType: "application/json"
           page:
             displayName: Page Index
             type: number
+            minimum: 1
             default: 1
         responses:
           200:

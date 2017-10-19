@@ -23,6 +23,7 @@
     "run": "mcs-ccc ./toolsConfig.json --verbose",
     "deploy": "mcs-deploy ./toolsConfig.json",
     "update": "node merge-mockup.js",
+    "doc": "raml2html ./ats.raml > ./ats.html",
     "test-postPatientLogin": "mcs-test ./toolsConfig.json postPatientLogin --verbose"
   }
 }

@@ -1,0 +1,676 @@
+<!DOCTYPE HTML><html><head><title>ats API documentation</title><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="generator" content="https://github.com/raml2html/raml2html 3.0.1"><link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css"><script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script><script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script><script type="text/javascript">
+      $(document).ready(function() {
+        $('.page-header pre code, .top-resource-description pre code, .modal-body pre code').each(function(i, block) {
+          hljs.highlightBlock(block);
+        });
+
+        $('[data-toggle]').click(function() {
+          var selector = $(this).data('target') + ' pre code';
+          $(selector).each(function(i, block) {
+            hljs.highlightBlock(block);
+          });
+        });
+
+        // open modal on hashes like #_action_get
+        $(window).bind('hashchange', function(e) {
+          var anchor_id = document.location.hash.substr(1); //strip #
+          var element = $('#' + anchor_id);
+
+          // do we have such element + is it a modal?  --> show it
+          if (element.length && element.hasClass('modal')) {
+            element.modal('show');
+          }
+        });
+
+        // execute hashchange on first page load
+        $(window).trigger('hashchange');
+
+        // remove url fragment on modal hide
+        $('.modal').on('hidden.bs.modal', function() {
+          try {
+            if (history && history.replaceState) {
+                history.replaceState({}, '', '#');
+            }
+          } catch(e) {}
+        });
+      });
+    </script><style>
+      .hljs {
+        background: transparent;
+      }
+      .parent {
+        color: #999;
+      }
+      .list-group-item > .badge {
+        float: none;
+        margin-right: 6px;
+      }
+      .panel-title > .methods {
+        float: right;
+      }
+      .badge {
+        border-radius: 0;
+        text-transform: uppercase;
+        width: 70px;
+        font-weight: normal;
+        color: #f3f3f6;
+        line-height: normal;
+      }
+      .badge_get {
+        background-color: #63a8e2;
+      }
+      .badge_post {
+        background-color: #6cbd7d;
+      }
+      .badge_put {
+        background-color: #22bac4;
+      }
+      .badge_delete {
+        background-color: #d26460;
+      }
+      .badge_patch {
+        background-color: #ccc444;
+      }
+      .list-group, .panel-group {
+        margin-bottom: 0;
+      }
+      .panel-group .panel+.panel-white {
+        margin-top: 0;
+      }
+      .panel-group .panel-white {
+        border-bottom: 1px solid #F5F5F5;
+        border-radius: 0;
+      }
+      .panel-white:last-child {
+        border-bottom-color: white;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+      }
+      .panel-white .panel-heading {
+        background: white;
+      }
+      .tab-pane ul {
+        padding-left: 2em;
+      }
+      .tab-pane h1 {
+        font-size: 1.3em;
+      }
+      .tab-pane h2 {
+        font-size: 1.2em;
+        padding-bottom: 4px;
+        border-bottom: 1px solid #ddd;
+      }
+      .tab-pane h3 {
+        font-size: 1.1em;
+      }
+      .tab-content {
+        border-left: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+        padding: 10px;
+      }
+      #sidebar {
+        margin-top: 30px;
+        padding-right: 5px;
+        overflow: auto;
+        height: 90%;
+      }
+      .top-resource-description {
+        border-bottom: 1px solid #ddd;
+        background: #fcfcfc;
+        padding: 15px 15px 0 15px;
+        margin: -15px -15px 10px -15px;
+      }
+      .resource-description {
+        border-bottom: 1px solid #fcfcfc;
+        background: #fcfcfc;
+        padding: 15px 15px 0 15px;
+        margin: -15px -15px 10px -15px;
+      }
+      .resource-description p:last-child {
+        margin: 0;
+      }
+      .list-group .badge {
+        float: left;
+      }
+      .method_description {
+        margin-left: 85px;
+      }
+      .method_description p:last-child {
+        margin: 0;
+      }
+      .list-group-item {
+        cursor: pointer;
+      }
+      .list-group-item:hover {
+        background-color: #f5f5f5;
+      }
+
+      pre code {
+        overflow: auto;
+        word-wrap: normal;
+        white-space: pre;
+      }
+    </style></head><body data-spy="scroll" data-target="#sidebar"><div class="container"><div class="row"><div class="col-md-9" role="main"><div class="page-header"><h1>ats API documentation <small>version 1.0</small></h1><p>/mobile/custom/ats</p></div><div class="panel panel-default"><div class="panel-heading"><h3 id="patient" class="panel-title">/patient</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_patient_login"><span class="parent">/patient</span>/login</a> <span class="methods"><a href="#patient_login_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_patient_login" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>After succesful login patientId is given.</p></div><div class="list-group"><div onclick="window.location.href = '#patient_login_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Logs in user</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="patient_login_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent">/patient</span>/login</h4></div><div class="modal-body"><div class="alert alert-info"><p>Logs in user</p></div><ul class="nav nav-tabs"><li class="active"><a href="#patient_login_post_request" data-toggle="tab">Request</a></li><li><a href="#patient_login_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="patient_login_post_request"><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+	"username": "smartface",
+	"password": "123456",
+	"deviceType": "iOS",
+	"notificationToken": "1"
+}
+</code></pre></div><div class="tab-pane" id="patient_login_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+	"result": 1,
+	"error": null,
+	"patientId": "21212"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+	"result": 0,
+	"error": "100ORA-01403: no data found",
+	"patientId": null
+}
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_patient__patientId_"><span class="parent">/patient</span>/{patientId}</a> <span class="methods"><a href="#patient__patientId__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_patient__patientId_" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Single patient specific operations</p></div><div class="list-group"><div onclick="window.location.href = '#patient__patientId__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Gets patient info</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="patient__patientId__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/patient</span>/{patientId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Gets patient info</p></div><ul class="nav nav-tabs"><li class="active"><a href="#patient__patientId__get_request" data-toggle="tab">Request</a></li><li><a href="#patient__patientId__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="patient__patientId__get_request"><h3>URI Parameters</h3><ul><li><strong>patientId</strong>: <em>required (string)</em><p><strong>Example</strong>:</p><pre>21212
+</pre></li></ul><h3>Headers</h3><ul><li><strong>language</strong>: <em>(one of en, ar - default: en)</em></li></ul></div><div class="tab-pane" id="patient__patientId__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+	"patientCode": "21212",
+	"patientName": "Patient  Name",
+	"mobileNo": "0582913219",
+	"homeNo": "0114100000",
+	"dobG": "19-05-1982",
+	"dobH": "19-05-1982",
+	"address": "الرياض - حي الروضة",
+	"motherName": "null",
+	"motherNameS": "null"
+}
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_patient__patientId__timeline"><span class="parent">/patient/{patientId}</span>/timeline</a> <span class="methods"><a href="#patient__patientId__timeline_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_patient__patientId__timeline" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Timeline operations of single patient</p></div><div class="list-group"><div onclick="window.location.href = '#patient__patientId__timeline_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="patient__patientId__timeline_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/patient/{patientId}</span>/timeline</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#patient__patientId__timeline_get_request" data-toggle="tab">Request</a></li><li><a href="#patient__patientId__timeline_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="patient__patientId__timeline_get_request"><h3>URI Parameters</h3><ul><li><strong>patientId</strong>: <em>required (string)</em><p><strong>Example</strong>:</p><pre>21212
+</pre></li></ul><h3>Headers</h3><ul><li><strong>language</strong>: <em>(one of en, ar - default: en)</em></li></ul><h3>Query Parameters</h3><ul><li><strong>Page Index</strong>: <em>(number - default: 1 - minimum: 1)</em></li></ul></div><div class="tab-pane" id="patient__patientId__timeline_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+    "errors": [],
+    "items": [
+        {
+            "actionDate": "2014-09-03 00:00:00",
+            "actionTime": "08:00 AM",
+            "categoryCode": "10",
+            "categoryDesc": "Appointment",
+            "categoryDesc_ar": "????",
+            "categoryDesc_en": "Appointment",
+            "companyId": "1",
+            "doctorName": "Magdy Abdul Raof Al Sabea",
+            "doctorName_ar": "مجدي عبد الرؤف السبع",
+            "doctorName_en": "Magdy Abdul Raof Al Sabea",
+            "orderNo": null,
+            "paging": "1",
+            "patientId": "21212",
+            "sectionName": null,
+            "sectionName_ar": null,
+            "sectionName_en": null,
+            "serialNo": "12489",
+            "status": "1",
+            "tempNo": null
+        },
+        {
+            "actionDate": "2014-09-17 00:00:00",
+            "actionTime": "01:00 PM",
+            "categoryCode": "10",
+            "categoryDesc": "Appointment",
+            "categoryDesc_ar": "????",
+            "categoryDesc_en": "Appointment",
+            "companyId": "1",
+            "doctorName": "Hani Ali Mohammed Omar",
+            "doctorName_ar": "هاني علي محمد عمر",
+            "doctorName_en": "Hani Ali Mohammed Omar",
+            "orderNo": null,
+            "paging": "2",
+            "patientId": "21212",
+            "sectionName": null,
+            "sectionName_ar": null,
+            "sectionName_en": null,
+            "serialNo": "12513",
+            "status": "1",
+            "tempNo": null
+        },
+        {
+            "actionDate": "2015-08-29 00:00:00",
+            "actionTime": "08:00 AM",
+            "categoryCode": "10",
+            "categoryDesc": "Appointment",
+            "categoryDesc_ar": "????",
+            "categoryDesc_en": "Appointment",
+            "companyId": "1",
+            "doctorName": "Samar  Samar",
+            "doctorName_ar": "سمر  سمر",
+            "doctorName_en": "Samar  Samar",
+            "orderNo": null,
+            "paging": "3",
+            "patientId": "21212",
+            "sectionName": null,
+            "sectionName_ar": null,
+            "sectionName_en": null,
+            "serialNo": "12710",
+            "status": "1",
+            "tempNo": null
+        },
+        {
+            "actionDate": "2015-10-26 00:00:00",
+            "actionTime": "12:30 PM",
+            "categoryCode": "10",
+            "categoryDesc": "Appointment",
+            "categoryDesc_ar": "????",
+            "categoryDesc_en": "Appointment",
+            "companyId": "1",
+            "doctorName": "Hani Ali Mohammed Omar",
+            "doctorName_ar": "هاني علي محمد عمر",
+            "doctorName_en": "Hani Ali Mohammed Omar",
+            "orderNo": null,
+            "paging": "4",
+            "patientId": "21212",
+            "sectionName": null,
+            "sectionName_ar": null,
+            "sectionName_en": null,
+            "serialNo": "12730",
+            "status": "6",
+            "tempNo": null
+        },
+        {
+            "actionDate": "2015-12-06 00:00:00",
+            "actionTime": "10:00 AM",
+            "categoryCode": "10",
+            "categoryDesc": "Appointment",
+            "categoryDesc_ar": "????",
+            "categoryDesc_en": "Appointment",
+            "companyId": "1",
+            "doctorName": "Hani Ali Mohammed Omar",
+            "doctorName_ar": "هاني علي محمد عمر",
+            "doctorName_en": "Hani Ali Mohammed Omar",
+            "orderNo": null,
+            "paging": "5",
+            "patientId": "21212",
+            "sectionName": null,
+            "sectionName_ar": null,
+            "sectionName_en": null,
+            "serialNo": "12753",
+            "status": "6",
+            "tempNo": null
+        },
+        {
+            "actionDate": "2016-02-23 00:00:00",
+            "actionTime": "02:30 PM",
+            "categoryCode": "10",
+            "categoryDesc": "Appointment",
+            "categoryDesc_ar": "????",
+            "categoryDesc_en": "Appointment",
+            "companyId": "1",
+            "doctorName": "Rana Adnan Dwai",
+            "doctorName_ar": "رانا عدنان دواي",
+            "doctorName_en": "Rana Adnan Dwai",
+            "orderNo": null,
+            "paging": "6",
+            "patientId": "21212",
+            "sectionName": null,
+            "sectionName_ar": null,
+            "sectionName_en": null,
+            "serialNo": "12810",
+            "status": "1",
+            "tempNo": null
+        }
+    ],
+    "page": 1,
+    "result": 1
+}
+</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="lab" class="panel-title">/lab</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_lab_results__orderNo_"><span class="parent">/lab/results</span>/{orderNo}</a> <span class="methods"><a href="#lab_results__orderNo__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_lab_results__orderNo_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#lab_results__orderNo__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="lab_results__orderNo__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/lab/results</span>/{orderNo}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#lab_results__orderNo__get_request" data-toggle="tab">Request</a></li><li><a href="#lab_results__orderNo__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="lab_results__orderNo__get_request"><h3>URI Parameters</h3><ul><li><strong>orderNo</strong>: <em>required (string)</em></li></ul><h3>Headers</h3><ul><li><strong>language</strong>: <em>(one of en, ar - default: en)</em></li></ul></div><div class="tab-pane" id="lab_results__orderNo__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>[{
+	"testId": "51476",
+	"testName": "CULTURE\u0026SENSITIVITY GENITAL FEMALE",
+	"result": "View Details",
+	"isDetailed": 1,
+	"resultDetails": "NORMAL VAGINAL FLORA ,GROWTH RATE: Scanty growth of, COLONY COUNT: 10^3 CFU/ml of\n",
+	"isGroup": 0,
+	"unitName": null,
+	"normalRange": null,
+	"nrMin": null,
+	"nrMax": null,
+	"resultDateG": "27-03-2010 00:00",
+	"resultDateH": "11-04-1431 00:00",
+	"companyId": "1",
+	"patientType": "2",
+	"patientId": "21212",
+	"admissionNo": null,
+	"opdSectionNo": "483",
+	"opdSerialNo": "126841",
+	"orderNo": "4046866",
+	"sectionNo": "483",
+	"specimenNo": "1262507",
+	"ordSequenceNo": "24358662",
+	"isHigh": 0,
+	"isLow": 0,
+	"groupItem": "51476",
+	"status": "Available"
+}]
+</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="clinic" class="panel-title">/clinic</h3></div><div class="panel-body"><div class="top-resource-description"><p>Gets list of clinics</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_clinic"><span class="parent"></span>/clinic</a> <span class="methods"><a href="#clinic_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_clinic" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#clinic_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="clinic_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/clinic</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#clinic_get_request" data-toggle="tab">Request</a></li><li><a href="#clinic_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="clinic_get_request"><h3>Headers</h3><ul><li><strong>language</strong>: <em>(one of en, ar - default: en)</em></li></ul></div><div class="tab-pane" id="clinic_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>[{
+	"clinicNo": "421",
+	"clinicCode": "ANE",
+	"clinicDesc": "Anaesthesia"
+}, {
+	"clinicNo": "553",
+	"clinicCode": "ENT",
+	"clinicDesc": "ENT Clinic"
+}, {
+	"clinicNo": "543",
+	"clinicCode": "CARD",
+	"clinicDesc": "Cardiology Clinic"
+}, {
+	"clinicNo": "533",
+	"clinicCode": "GP",
+	"clinicDesc": "General Practice Clinic"
+}, {
+	"clinicNo": "545",
+	"clinicCode": "INT",
+	"clinicDesc": "Internal Medicine Clinic"
+}, {
+	"clinicNo": "593",
+	"clinicCode": "URO",
+	"clinicDesc": "Urology Clinic"
+}, {
+	"clinicNo": "373",
+	"clinicCode": "DIET",
+	"clinicDesc": "Dietetics Clinic"
+}, {
+	"clinicNo": "513",
+	"clinicCode": "GENSU",
+	"clinicDesc": "General Surgery Clinic"
+}, {
+	"clinicNo": "583",
+	"clinicCode": "ORTHO",
+	"clinicDesc": "Orthopedic Clinic"
+}, {
+	"clinicNo": "590",
+	"clinicCode": "URO000",
+	"clinicDesc": "Urology"
+}, {
+	"clinicNo": "433",
+	"clinicCode": "GYN",
+	"clinicDesc": "Obst \u0026 Gyne Clinic"
+}, {
+	"clinicNo": "451",
+	"clinicCode": "PEDI01",
+	"clinicDesc": "Pediatrics"
+}, {
+	"clinicNo": "453",
+	"clinicCode": "PED",
+	"clinicDesc": "Pediatrics Clinic"
+}, {
+	"clinicNo": "463",
+	"clinicCode": "DERM",
+	"clinicDesc": "Dermatology Clinic"
+}, {
+	"clinicNo": "483",
+	"clinicCode": "DENT",
+	"clinicDesc": "Dental Clinic"
+}, {
+	"clinicNo": "490",
+	"clinicCode": "PHYS00",
+	"clinicDesc": "Physiotherapy"
+}, {
+	"clinicNo": "493",
+	"clinicCode": "PHYS",
+	"clinicDesc": "Physiotherapy Clinic"
+}, {
+	"clinicNo": "310",
+	"clinicCode": "RAD",
+	"clinicDesc": "Radiology Services"
+}, {
+	"clinicNo": "311",
+	"clinicCode": "GENR",
+	"clinicDesc": "General  Radiology"
+}, {
+	"clinicNo": "313",
+	"clinicCode": "CT",
+	"clinicDesc": "Ct  Scan"
+}, {
+	"clinicNo": "98810",
+	"clinicCode": "98810",
+	"clinicDesc": "Dialysis Clinic"
+}]
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_clinic__clinicNo__doctors"><span class="parent">/clinic/{clinicNo}</span>/doctors</a> <span class="methods"><a href="#clinic__clinicNo__doctors_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_clinic__clinicNo__doctors" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#clinic__clinicNo__doctors_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="clinic__clinicNo__doctors_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/clinic/{clinicNo}</span>/doctors</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#clinic__clinicNo__doctors_get_request" data-toggle="tab">Request</a></li><li><a href="#clinic__clinicNo__doctors_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="clinic__clinicNo__doctors_get_request"><h3>URI Parameters</h3><ul><li><strong>clinicNo</strong>: <em>required (string)</em></li></ul><h3>Headers</h3><ul><li><strong>language</strong>: <em>(one of en, ar - default: en)</em></li></ul></div><div class="tab-pane" id="clinic__clinicNo__doctors_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>[{
+	"staffId": "10453",
+	"doctorCode": "10453",
+	"doctorName": "Gada Sami Badawi Abdel Hamid",
+	"resourceId": "6",
+	"resourceDesc": "Anesthesia Clinic"
+}, {
+	"staffId": "125253",
+	"doctorCode": "125253",
+	"doctorName": "Samar  Samar",
+	"resourceId": "152",
+	"resourceDesc": "Samar Samar"
+}, {
+	"staffId": "10459",
+	"doctorCode": "10459",
+	"doctorName": "Wael Mohammed Elmarghany Mossa",
+	"resourceId": "135",
+	"resourceDesc": "ok"
+}, {
+	"staffId": "10134",
+	"doctorCode": "10134",
+	"doctorName": "Amr Fathi Ali",
+	"resourceId": "167",
+	"resourceDesc": "1"
+}]
+</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="appointment" class="panel-title">/appointment</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_appointment"><span class="parent"></span>/appointment</a> <span class="methods"><a href="#appointment_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_appointment" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#appointment_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Creates a new appointment</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="appointment_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/appointment</h4></div><div class="modal-body"><div class="alert alert-info"><p>Creates a new appointment</p></div><ul class="nav nav-tabs"><li class="active"><a href="#appointment_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="appointment_post_response"><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+	"message": "ORA-01403: no data found",
+	"isPrevent": null
+}
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_appointment_category"><span class="parent">/appointment</span>/category</a> <span class="methods"><a href="#appointment_category_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_appointment_category" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#appointment_category_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="appointment_category_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/appointment</span>/category</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#appointment_category_get_request" data-toggle="tab">Request</a></li><li><a href="#appointment_category_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="appointment_category_get_request"><h3>Headers</h3><ul><li><strong>language</strong>: <em>(one of en, ar - default: en)</em></li></ul></div><div class="tab-pane" id="appointment_category_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>[{
+	"categoryNo": "368",
+	"categoryCode": "1",
+	"categoryDesc": "New Patient"
+}, {
+	"categoryNo": "369",
+	"categoryCode": "2",
+	"categoryDesc": "Followup"
+}, {
+	"categoryNo": "370",
+	"categoryCode": "3",
+	"categoryDesc": "VIPS"
+}, {
+	"categoryNo": "371",
+	"categoryCode": "4",
+	"categoryDesc": "Waiting List"
+}, {
+	"categoryNo": "11469",
+	"categoryCode": "26",
+	"categoryDesc": "extra"
+}, {
+	"categoryNo": "55349",
+	"categoryCode": "27",
+	"categoryDesc": "Referrals"
+}, {
+	"categoryNo": "55352",
+	"categoryCode": "28",
+	"categoryDesc": "In Followup"
+}]
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_appointment_period"><span class="parent">/appointment</span>/period</a> <span class="methods"><a href="#appointment_period_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_appointment_period" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#appointment_period_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="appointment_period_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/appointment</span>/period</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#appointment_period_get_request" data-toggle="tab">Request</a></li><li><a href="#appointment_period_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="appointment_period_get_request"><h3>Query Parameters</h3><ul><li><strong>language</strong>: <em>(one of en, tr - default: en)</em></li></ul></div><div class="tab-pane" id="appointment_period_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>[{
+	"periodNo": "372",
+	"periodCode": "1",
+	"periodDesc": "Morninig"
+}, {
+	"periodNo": "373",
+	"periodCode": "2",
+	"periodDesc": "Afternoon"
+}, {
+	"periodNo": "374",
+	"periodCode": "3",
+	"periodDesc": "Evening"
+}, {
+	"periodNo": "22234",
+	"periodCode": "4",
+	"periodDesc": "Night"
+}]
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_appointment_available__clinicNo___doctorId___yearMonth_"><span class="parent">/appointment/available/{clinicNo}/{doctorId}</span>/{yearMonth}</a> <span class="methods"><a href="#appointment_available__clinicNo___doctorId___yearMonth__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_appointment_available__clinicNo___doctorId___yearMonth_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#appointment_available__clinicNo___doctorId___yearMonth__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Gets list of available dates for a doctor in given year-month</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="appointment_available__clinicNo___doctorId___yearMonth__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/appointment/available/{clinicNo}/{doctorId}</span>/{yearMonth}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Gets list of available dates for a doctor in given year-month</p></div><ul class="nav nav-tabs"><li class="active"><a href="#appointment_available__clinicNo___doctorId___yearMonth__get_request" data-toggle="tab">Request</a></li><li><a href="#appointment_available__clinicNo___doctorId___yearMonth__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="appointment_available__clinicNo___doctorId___yearMonth__get_request"><h3>URI Parameters</h3><ul><li><strong>clinicNo</strong>: <em>required (string)</em></li><li><strong>doctorId</strong>: <em>required (string)</em></li><li><strong>yearMonth</strong>: <em>required (string)</em><p>Dash separated YYYY-MM format</p></li></ul></div><div class="tab-pane" id="appointment_available__clinicNo___doctorId___yearMonth__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>[{
+	"monthDay": 1,
+	"apptCount": 4,
+	"apptReserved": 0,
+	"apptAvailable": 4
+}, {
+	"monthDay": 2,
+	"apptCount": 4,
+	"apptReserved": 0,
+	"apptAvailable": 4
+}, {
+	"monthDay": 3,
+	"apptCount": 4,
+	"apptReserved": 0,
+	"apptAvailable": 4
+}, {
+	"monthDay": 4,
+	"apptCount": 4,
+	"apptReserved": 0,
+	"apptAvailable": 4
+}, {
+	"monthDay": 7,
+	"apptCount": 4,
+	"apptReserved": 0,
+	"apptAvailable": 4
+}, {
+	"monthDay": 8,
+	"apptCount": 4,
+	"apptReserved": 0,
+	"apptAvailable": 4
+}, {
+	"monthDay": 9,
+	"apptCount": 4,
+	"apptReserved": 0,
+	"apptAvailable": 4
+}, {
+	"monthDay": 10,
+	"apptCount": 4,
+	"apptReserved": 0,
+	"apptAvailable": 4
+}, {
+	"monthDay": 11,
+	"apptCount": 4,
+	"apptReserved": 0,
+	"apptAvailable": 4
+}, {
+	"monthDay": 14,
+	"apptCount": 4,
+	"apptReserved": 0,
+	"apptAvailable": 4
+}, {
+	"monthDay": 15,
+	"apptCount": 4,
+	"apptReserved": 0,
+	"apptAvailable": 4
+}, {
+	"monthDay": 16,
+	"apptCount": 4,
+	"apptReserved": 0,
+	"apptAvailable": 4
+}, {
+	"monthDay": 17,
+	"apptCount": 4,
+	"apptReserved": 0,
+	"apptAvailable": 4
+}, {
+	"monthDay": 18,
+	"apptCount": 4,
+	"apptReserved": 0,
+	"apptAvailable": 4
+}, {
+	"monthDay": 21,
+	"apptCount": 4,
+	"apptReserved": 0,
+	"apptAvailable": 4
+}, {
+	"monthDay": 22,
+	"apptCount": 4,
+	"apptReserved": 0,
+	"apptAvailable": 4
+}, {
+	"monthDay": 23,
+	"apptCount": 4,
+	"apptReserved": 0,
+	"apptAvailable": 4
+}, {
+	"monthDay": 24,
+	"apptCount": 4,
+	"apptReserved": 0,
+	"apptAvailable": 4
+}, {
+	"monthDay": 25,
+	"apptCount": 4,
+	"apptReserved": 0,
+	"apptAvailable": 4
+}, {
+	"monthDay": 28,
+	"apptCount": 4,
+	"apptReserved": 0,
+	"apptAvailable": 4
+}, {
+	"monthDay": 29,
+	"apptCount": 4,
+	"apptReserved": 0,
+	"apptAvailable": 4
+}, {
+	"monthDay": 30,
+	"apptCount": 4,
+	"apptReserved": 0,
+	"apptAvailable": 4
+}, {
+	"monthDay": 31,
+	"apptCount": 4,
+	"apptReserved": 0,
+	"apptAvailable": 4
+}]
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_appointment_available__clinicNo___doctorId___yearMonth___day_"><span class="parent">/appointment/available/{clinicNo}/{doctorId}/{yearMonth}</span>/{day}</a> <span class="methods"><a href="#appointment_available__clinicNo___doctorId___yearMonth___day__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_appointment_available__clinicNo___doctorId___yearMonth___day_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#appointment_available__clinicNo___doctorId___yearMonth___day__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Gets list of available times in given date</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="appointment_available__clinicNo___doctorId___yearMonth___day__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/appointment/available/{clinicNo}/{doctorId}/{yearMonth}</span>/{day}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Gets list of available times in given date</p></div><ul class="nav nav-tabs"><li class="active"><a href="#appointment_available__clinicNo___doctorId___yearMonth___day__get_request" data-toggle="tab">Request</a></li><li><a href="#appointment_available__clinicNo___doctorId___yearMonth___day__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="appointment_available__clinicNo___doctorId___yearMonth___day__get_request"><h3>URI Parameters</h3><ul><li><strong>clinicNo</strong>: <em>required (string)</em></li><li><strong>doctorId</strong>: <em>required (string)</em></li><li><strong>yearMonth</strong>: <em>required (string)</em><p>Dash separated YYYY-MM format</p></li><li><strong>day</strong>: <em>required (string)</em></li></ul><h3>Headers</h3><ul><li><strong>language</strong>: <em>(one of en, ar - default: en)</em></li></ul></div><div class="tab-pane" id="appointment_available__clinicNo___doctorId___yearMonth___day__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>[{
+	"slotTimeFrom": "08:00",
+	"slotTimeTo": "08:30",
+	"periodDesc": "Morninig",
+	"resourceId": "3",
+	"slotSerial": "445120",
+	"periodPart": "372"
+}, {
+	"slotTimeFrom": "08:30",
+	"slotTimeTo": "09:00",
+	"periodDesc": "Morninig",
+	"resourceId": "3",
+	"slotSerial": "445121",
+	"periodPart": "372"
+}, {
+	"slotTimeFrom": "09:00",
+	"slotTimeTo": "09:30",
+	"periodDesc": "Morninig",
+	"resourceId": "3",
+	"slotSerial": "445122",
+	"periodPart": "372"
+}, {
+	"slotTimeFrom": "09:30",
+	"slotTimeTo": "10:00",
+	"periodDesc": "Morninig",
+	"resourceId": "3",
+	"slotSerial": "445123",
+	"periodPart": "372"
+}, {
+	"slotTimeFrom": "10:00",
+	"slotTimeTo": "10:30",
+	"periodDesc": "Morninig",
+	"resourceId": "3",
+	"slotSerial": "445124",
+	"periodPart": "372"
+}, {
+	"slotTimeFrom": "10:30",
+	"slotTimeTo": "11:00",
+	"periodDesc": "Morninig",
+	"resourceId": "3",
+	"slotSerial": "445125",
+	"periodPart": "372"
+}, {
+	"slotTimeFrom": "11:00",
+	"slotTimeTo": "11:30",
+	"periodDesc": "Morninig",
+	"resourceId": "3",
+	"slotSerial": "445126",
+	"periodPart": "372"
+}, {
+	"slotTimeFrom": "11:30",
+	"slotTimeTo": "12:00",
+	"periodDesc": "Morninig",
+	"resourceId": "3",
+	"slotSerial": "445127",
+	"periodPart": "372"
+}]</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="col-md-3"><div id="sidebar" class="hidden-print affix" role="complementary"><ul class="nav nav-pills nav-stacked"><li><a href="#patient">/patient</a></li><li><a href="#lab">/lab</a></li><li><a href="#clinic">/clinic</a></li><li><a href="#appointment">/appointment</a></li></ul></div></div></div></div></body></html>
