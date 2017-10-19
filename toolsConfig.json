@@ -20,27 +20,50 @@
 		"tempDirectory": "/tmp/mcs-deploy"
 	},
 	"tests": {
-		"getAppointmentAvailableClinicNoDoctorIdYearMonthDay": {
-			"method": "GET",
-			"resource": "/appointment/available/:clinicNo/:doctorId/:yearMonth/:day",
-			"uriParameters": {
-				"clinicNo": "<PARAMETER_VALUE>",
-				"doctorId": "<PARAMETER_VALUE>",
-				"yearMonth": "<PARAMETER_VALUE>",
-				"day": "<PARAMETER_VALUE>"
-			}
-		},
 		"getClinic": {
 			"method": "GET",
 			"resource": "/clinic"
 		},
-		"getAppointmentAvailableClinicNoDoctorIdYearMonth": {
+		"getClinicClinicNoDoctors": {
 			"method": "GET",
-			"resource": "/appointment/available/:clinicNo/:doctorId/:yearMonth",
+			"resource": "/clinic/:clinicNo/doctors",
 			"uriParameters": {
-				"clinicNo": "<PARAMETER_VALUE>",
-				"doctorId": "<PARAMETER_VALUE>",
-				"yearMonth": "<PARAMETER_VALUE>"
+				"clinicNo": "421"
+			}
+		},
+		"getPatientPatientId": {
+			"method": "GET",
+			"resource": "/patient/:patientId",
+			"uriParameters": {
+				"patientId": "21212"
+			}
+		},
+		"getAppointmentAvailableClinicNoDoctorIdYearMonthDay": {
+			"method": "GET",
+			"resource": "/appointment/available/:clinicNo/:doctorId/:yearMonth/:day",
+			"uriParameters": {
+				"clinicNo": "421",
+				"doctorId": "10453",
+				"yearMonth": "2017-10",
+				"day": "11"
+			}
+		},
+		"getPatientPatientIdTimeline": {
+			"method": "GET",
+			"resource": "/patient/:patientId/timeline",
+			"uriParameters": {
+				"patientId": "21212"
+			}
+		},
+		"getAppointmentCategory": {
+			"method": "GET",
+			"resource": "/appointment/category"
+		},
+		"getLabResultsOrderNo": {
+			"method": "GET",
+			"resource": "/lab/results/:orderNo",
+			"uriParameters": {
+				"orderNo": "4046866"
 			}
 		},
 		"postPatientLogin": {
@@ -53,40 +76,17 @@
 				"notificationToken": "1"
 			}
 		},
-		"getAppointmentCategory": {
-			"method": "GET",
-			"resource": "/appointment/category"
-		},
 		"getAppointmentPeriod": {
 			"method": "GET",
 			"resource": "/appointment/period"
 		},
-		"getPatientPatientId": {
+		"getAppointmentAvailableClinicNoDoctorIdYearMonth": {
 			"method": "GET",
-			"resource": "/patient/:patientId",
+			"resource": "/appointment/available/:clinicNo/:doctorId/:yearMonth",
 			"uriParameters": {
-				"patientId": "<PARAMETER_VALUE>"
-			}
-		},
-		"getLabResultsOrderNo": {
-			"method": "GET",
-			"resource": "/lab/results/:orderNo",
-			"uriParameters": {
-				"orderNo": "<PARAMETER_VALUE>"
-			}
-		},
-		"getPatientPatientIdTimeline": {
-			"method": "GET",
-			"resource": "/patient/:patientId/timeline",
-			"uriParameters": {
-				"patientId": "<PARAMETER_VALUE>"
-			}
-		},
-		"getClinicClinicNoDoctors": {
-			"method": "GET",
-			"resource": "/clinic/:clinicNo/doctors",
-			"uriParameters": {
-				"clinicNo": "<PARAMETER_VALUE>"
+				"clinicNo": "421",
+				"doctorId": "10453",
+				"yearMonth": "2017-10"
 			}
 		}
 	}

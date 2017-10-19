@@ -2,7 +2,8 @@ const connectorName = "atscareware";
 
 module.exports = function(service) {
     const endpoints = [
-        "login"
+        "login",
+        "patient"
     ];
     
     endpoints.forEach(item => require(`./${item}`)(service, connectorName));

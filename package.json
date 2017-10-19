@@ -22,6 +22,7 @@
   "scripts": {
     "run": "mcs-ccc ./toolsConfig.json --verbose",
     "deploy": "mcs-deploy ./toolsConfig.json",
+    "update": "node merge-mockup.js",
     "test-postPatientLogin": "mcs-test ./toolsConfig.json postPatientLogin --verbose"
   }
 }

@@ -1,3 +1,4 @@
 Object.assign(exports, {
-    login: require("./login")
+    login: require("./login"),
+    patient: require("./patient")
 });
