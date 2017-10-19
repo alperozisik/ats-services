@@ -148,7 +148,7 @@ module.exports = function(service, connectorName, validate) {
     service.get('/mobile/custom/ats/patient/:patientId/timeline', validate, function(req, res) {
         var oracleMobile = req.oracleMobile;
         var patientId = req.params.patientId;
-        var lang = req.get("language") === "ar" ? 2 : 1;
+        var lang = req.get("language") || "en";
         var page = req.query.page || 1;
         var pageFrom = ((page - 1) * pageLengthByService) + 1;
         oracleMobile.connectors.get(connectorName, `serviceWS/getTimeLine/${patientId}/${pageFrom}`)
