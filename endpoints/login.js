@@ -1,9 +1,7 @@
-module.exports = function(service, connectorName) {
-    const validation = require("../validation");
-    const validate = require('express-validation');
+module.exports = function(service, connectorName, validate) {
     const genericBodyHandler = require("../lib/generic-body-handler");
 
-    service.post('/mobile/custom/ats/patient/login', validate(validation.login), function(req, res) {
+    service.post('/mobile/custom/ats/patient/login', validate, function(req, res) {
         var oracleMobile = req.oracleMobile;
         var password = req.body.password;
         var nickname = req.body.username;

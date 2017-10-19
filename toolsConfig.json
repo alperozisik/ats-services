@@ -53,6 +53,9 @@
 			"resource": "/patient/:patientId/timeline",
 			"uriParameters": {
 				"patientId": "21212"
+			},
+			"queryParameters": {
+				"page": "2"
 			}
 		},
 		"getAppointmentCategory": {

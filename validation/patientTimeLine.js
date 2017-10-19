@@ -1,0 +1,11 @@
+var Joi = require('joi');
+
+module.exports = {
+    options: { allowUnknownBody: false },
+    header: {
+        lanugage: Joi.string().optional().regex(/^(?:en|ar)$/)
+    },
+    query: {
+        page: Joi.number().optional().integer().min(1)
+    }
+};
