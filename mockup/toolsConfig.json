@@ -21,9 +21,43 @@
         "tempDirectory":"/tmp/mcs-deploy"
     },
     "tests":{
+        "postPatientLogin":{
+            "method":"POST",
+            "resource":"/patient/login",
+            "payload":{
+                "username":"smartface",
+                "password":"123456",
+                "deviceType":"iOS",
+                "notificationToken":"1"
+            }
+        },
         "getClinic":{
             "method":"GET",
             "resource":"/clinic"
+        },
+        "postAppointment":{
+            "method":"POST",
+            "resource":"/appointment",
+            "payload":{
+                "doctorId":124,
+                "slotSerial":"446411",
+                "categorycode":368,
+                "patientId":21212,
+                "notificationToken":"xxyyzz"
+            }
+        },
+        "getAppointmentPeriod":{
+            "method":"GET",
+            "resource":"/appointment/period"
+        },
+        "getAppointmentDoctorIdPeriodDate":{
+            "method":"GET",
+            "resource":"/appointment/:doctorId/:period/:date",
+            "uriParameters":{
+                "doctorId":"<PARAMETER_VALUE>",
+                "period":"<PARAMETER_VALUE>",
+                "date":"<PARAMETER_VALUE>"
+            }
         },
         "getClinicClinicNoDoctors":{
             "method":"GET",
@@ -32,21 +66,27 @@
                 "clinicNo":"<PARAMETER_VALUE>"
             }
         },
+        "getAppointmentAvailableClinicNoDoctorIdYearMonth":{
+            "method":"GET",
+            "resource":"/appointment/available/:clinicNo/:doctorId/:yearMonth",
+            "uriParameters":{
+                "clinicNo":"<PARAMETER_VALUE>",
+                "doctorId":"<PARAMETER_VALUE>",
+                "yearMonth":"<PARAMETER_VALUE>"
+            }
+        },
+        "getLabResultsOrderNo":{
+            "method":"GET",
+            "resource":"/lab/results/:orderNo",
+            "uriParameters":{
+                "orderNo":"<PARAMETER_VALUE>"
+            }
+        },
         "getPatientPatientId":{
             "method":"GET",
             "resource":"/patient/:patientId",
             "uriParameters":{
                 "patientId":"<PARAMETER_VALUE>"
-            }
-        },
-        "getAppointmentAvailableClinicNoDoctorIdYearMonthDay":{
-            "method":"GET",
-            "resource":"/appointment/available/:clinicNo/:doctorId/:yearMonth/:day",
-            "uriParameters":{
-                "clinicNo":"<PARAMETER_VALUE>",
-                "doctorId":"<PARAMETER_VALUE>",
-                "yearMonth":"<PARAMETER_VALUE>",
-                "day":"<PARAMETER_VALUE>"
             }
         },
         "getPatientPatientIdTimeline":{
@@ -59,36 +99,6 @@
         "getAppointmentCategory":{
             "method":"GET",
             "resource":"/appointment/category"
-        },
-        "getLabResultsOrderNo":{
-            "method":"GET",
-            "resource":"/lab/results/:orderNo",
-            "uriParameters":{
-                "orderNo":"<PARAMETER_VALUE>"
-            }
-        },
-        "postPatientLogin":{
-            "method":"POST",
-            "resource":"/patient/login",
-            "payload":{
-                "username":"smartface",
-                "password":"123456",
-                "deviceType":"iOS",
-                "notificationToken":"1"
-            }
-        },
-        "getAppointmentPeriod":{
-            "method":"GET",
-            "resource":"/appointment/period"
-        },
-        "getAppointmentAvailableClinicNoDoctorIdYearMonth":{
-            "method":"GET",
-            "resource":"/appointment/available/:clinicNo/:doctorId/:yearMonth",
-            "uriParameters":{
-                "clinicNo":"<PARAMETER_VALUE>",
-                "doctorId":"<PARAMETER_VALUE>",
-                "yearMonth":"<PARAMETER_VALUE>"
-            }
         }
     }
 }

@@ -1,6 +1,6 @@
 const genericBodyHandler = require("../lib/generic-body-handler");
 const valueConverter = require("../lib/value-converter");
-const reYearMonth = /^(2\d{3})-([0-3]\d)$/;
+const reYearMonth = /^(2\d{3})-([01]?\d)$$/;
 const companyId = 1;
 
 module.exports = function(service, connectorName, validate) {
@@ -12,7 +12,7 @@ module.exports = function(service, connectorName, validate) {
         reYearMonth.lastIndex = 0;
         var yearMonth = reYearMonth.exec(req.params.yearMonth);
         var year = Number(yearMonth[1]);
-        var month = Number(yearMonth[2]);
+        var month = pad(Number(yearMonth[2]),2);
 
         oracleMobile.connectors.get(connectorName, `serviceWS/getDoctorOfDepartments/${companyId}/${clinicNo}/1`)
             .then(
@@ -58,3 +58,9 @@ module.exports = function(service, connectorName, validate) {
         }
     });
 };
+
+function pad(n, width, z) {
+  z = z || '0';
+  n = n + '';
+  return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+}

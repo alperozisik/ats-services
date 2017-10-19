@@ -1,6 +1,6 @@
-module.exports = function(service, connectorName, validate) {
-    const genericBodyHandler = require("../lib/generic-body-handler");
+const genericBodyHandler = require("../lib/generic-body-handler");
 
+module.exports = function(service, connectorName, validate) {
     service.post('/mobile/custom/ats/patient/login', validate, function(req, res) {
         var oracleMobile = req.oracleMobile;
         var password = req.body.password;

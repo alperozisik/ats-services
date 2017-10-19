@@ -55,8 +55,11 @@ function setDefaultValues(target) {
             case "orderNo":
                 target[p] = prop = "4046866";
                 break;
-            case "day":
-                target[p] = prop = "11";
+            case "period":
+                target[p] = prop = "446362";
+                break;
+            case "date":
+                target[p] = prop = "2017-10-30";
                 break;
     }
     }

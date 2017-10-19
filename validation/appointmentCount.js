@@ -5,6 +5,6 @@ module.exports = {
     path: {
         clinicNo: Joi.string().required(),
         doctorId: Joi.string().required(),
-        yearMonth: Joi.string().required().regex(/^(2\d{3})-([0-3]\d)$/),
+        yearMonth: Joi.string().required().regex(/^(2\d{3})-([01]?\d)$/),
     }
 };

@@ -8,7 +8,7 @@ mediaType: "application/json"
   /login:
     displayName: Patient Login
     description: |
-      After succesful login patientId is given.
+      (1) After succesful login patientId is given.
       
     post:
       description: |
@@ -47,7 +47,7 @@ mediaType: "application/json"
                 
   /{patientId}:
     description: |
-      Single patient specific operations
+      (4) Single patient specific operations
       
     uriParameters:
       patientId:
@@ -87,7 +87,7 @@ mediaType: "application/json"
     /timeline:
       displayName: Patient TimeLine
       description: |
-        Timeline operations of single patient
+        (2) Timeline operations of single patient
         
       get:
         headers:
@@ -244,6 +244,9 @@ mediaType: "application/json"
 /lab:
   /results:
     /{orderNo}:
+      description: |
+        (3)
+        
       uriParameters:
         orderNo:
           displayName: orderNo
@@ -292,7 +295,7 @@ mediaType: "application/json"
                   
 /clinic:
   description: |
-    Gets list of clinics
+    (5) Gets list of clinics
     
   get:
     protocols: [HTTPS]
@@ -401,6 +404,9 @@ mediaType: "application/json"
         required: true
     /doctors:
       displayName: Get list of doctors in a clinic
+      description: |
+        (6)
+        
       get:
         headers:
           language:
@@ -440,13 +446,45 @@ mediaType: "application/json"
                   }]
                   
 /appointment:
+  description: |
+    (11)
+    
   post:
     description: |
       Creates a new appointment
       
     protocols: [HTTPS]
+    headers:
+      language:
+        displayName: language
+        type: string
+        enum: ['en','ar']
+        default: en
+    body:
+      application/json:
+        example: |
+          {
+            "doctorId": 124,
+            "slotSerial": "446411",
+            "categorycode": 368,
+            "patientId": 21212,
+            "notificationToken": "xxyyzz"
+          }
+          
     responses:
-      404:
+      201:
+        body:
+          application/json:
+            example: |
+              {
+                "message":null,
+                "isPrevent":2
+              }
+              
+      400:
+        description: |
+          With invalid parameters
+          
         body:
           application/json:
             example: |
@@ -455,8 +493,35 @@ mediaType: "application/json"
               	"isPrevent": null
               }
               
+      409:
+        description: |
+          Patient has another appointment with another doctor
+          
+        body:
+          application/json:
+            example: |
+              {
+                "message":"Message content",
+                "isPrevent":0
+              }
+              
+      410:
+        description: |
+          Stop Appointment Booking. This patient already have appointment at this time with same doctor
+          
+        body:
+          application/json:
+            example: |
+              {
+                "message":"This patient already have appointment at this time.",
+                "isPrevent":1
+              }
+              
   /category:
     displayName: Get list of appointment categories
+    description: |
+      (7)
+      
     get:
       headers:
         language:
@@ -501,6 +566,9 @@ mediaType: "application/json"
                 
   /period:
     displayName: Get list of appointment periods
+    description: |
+      (8)
+      
     get:
       queryParameters:
         language:
@@ -545,6 +613,9 @@ mediaType: "application/json"
             type: string
             required: true
         /{yearMonth}:
+          description: |
+            (9)
+            
           uriParameters:
             yearMonth:
               displayName: yearMonth
@@ -679,81 +750,94 @@ mediaType: "application/json"
                       	"apptAvailable": 4
                       }]
                       
-          /{day}:
-            uriParameters:
-              day:
-                displayName: day
-                type: string
-                required: true
-            get:
-              description: |
-                Gets list of available times in given date
-                
-              headers:
-                language:
-                  displayName: language
-                  type: string
-                  enum: ['en','ar']
-                  default: en
-              responses:
-                200:
-                  body:
-                    application/json:
-                      example: |
-                        [{
-                        	"slotTimeFrom": "08:00",
-                        	"slotTimeTo": "08:30",
-                        	"periodDesc": "Morninig",
-                        	"resourceId": "3",
-                        	"slotSerial": "445120",
-                        	"periodPart": "372"
-                        }, {
-                        	"slotTimeFrom": "08:30",
-                        	"slotTimeTo": "09:00",
-                        	"periodDesc": "Morninig",
-                        	"resourceId": "3",
-                        	"slotSerial": "445121",
-                        	"periodPart": "372"
-                        }, {
-                        	"slotTimeFrom": "09:00",
-                        	"slotTimeTo": "09:30",
-                        	"periodDesc": "Morninig",
-                        	"resourceId": "3",
-                        	"slotSerial": "445122",
-                        	"periodPart": "372"
-                        }, {
-                        	"slotTimeFrom": "09:30",
-                        	"slotTimeTo": "10:00",
-                        	"periodDesc": "Morninig",
-                        	"resourceId": "3",
-                        	"slotSerial": "445123",
-                        	"periodPart": "372"
-                        }, {
-                        	"slotTimeFrom": "10:00",
-                        	"slotTimeTo": "10:30",
-                        	"periodDesc": "Morninig",
-                        	"resourceId": "3",
-                        	"slotSerial": "445124",
-                        	"periodPart": "372"
-                        }, {
-                        	"slotTimeFrom": "10:30",
-                        	"slotTimeTo": "11:00",
-                        	"periodDesc": "Morninig",
-                        	"resourceId": "3",
-                        	"slotSerial": "445125",
-                        	"periodPart": "372"
-                        }, {
-                        	"slotTimeFrom": "11:00",
-                        	"slotTimeTo": "11:30",
-                        	"periodDesc": "Morninig",
-                        	"resourceId": "3",
-                        	"slotSerial": "445126",
-                        	"periodPart": "372"
-                        }, {
-                        	"slotTimeFrom": "11:30",
-                        	"slotTimeTo": "12:00",
-                        	"periodDesc": "Morninig",
-                        	"resourceId": "3",
-                        	"slotSerial": "445127",
-                        	"periodPart": "372"
-                        }]
+  /{doctorId}:
+    uriParameters:
+      doctorId:
+        displayName: doctorId
+        type: string
+        required: true
+    /{period}:
+      uriParameters:
+        period:
+          displayName: period
+          type: string
+          required: true
+      /{date}:
+        displayName: getSlotTime
+        uriParameters:
+          date:
+            displayName: date
+            type: string
+            example: |
+              2017-10-19
+              
+            required: true
+        get:
+          headers:
+            language:
+              displayName: language
+              type: string
+              enum: ['en','ar']
+              default: en
+          responses:
+            200:
+              body:
+                application/json:
+                  example: |
+                    [{
+                    	"slotTimeFrom": "08:00",
+                    	"slotTimeTo": "08:30",
+                    	"periodDesc": "Morninig",
+                    	"resourceId": "3",
+                    	"slotSerial": "445120",
+                    	"periodPart": "372"
+                    }, {
+                    	"slotTimeFrom": "08:30",
+                    	"slotTimeTo": "09:00",
+                    	"periodDesc": "Morninig",
+                    	"resourceId": "3",
+                    	"slotSerial": "445121",
+                    	"periodPart": "372"
+                    }, {
+                    	"slotTimeFrom": "09:00",
+                    	"slotTimeTo": "09:30",
+                    	"periodDesc": "Morninig",
+                    	"resourceId": "3",
+                    	"slotSerial": "445122",
+                    	"periodPart": "372"
+                    }, {
+                    	"slotTimeFrom": "09:30",
+                    	"slotTimeTo": "10:00",
+                    	"periodDesc": "Morninig",
+                    	"resourceId": "3",
+                    	"slotSerial": "445123",
+                    	"periodPart": "372"
+                    }, {
+                    	"slotTimeFrom": "10:00",
+                    	"slotTimeTo": "10:30",
+                    	"periodDesc": "Morninig",
+                    	"resourceId": "3",
+                    	"slotSerial": "445124",
+                    	"periodPart": "372"
+                    }, {
+                    	"slotTimeFrom": "10:30",
+                    	"slotTimeTo": "11:00",
+                    	"periodDesc": "Morninig",
+                    	"resourceId": "3",
+                    	"slotSerial": "445125",
+                    	"periodPart": "372"
+                    }, {
+                    	"slotTimeFrom": "11:00",
+                    	"slotTimeTo": "11:30",
+                    	"periodDesc": "Morninig",
+                    	"resourceId": "3",
+                    	"slotSerial": "445126",
+                    	"periodPart": "372"
+                    }, {
+                    	"slotTimeFrom": "11:30",
+                    	"slotTimeTo": "12:00",
+                    	"periodDesc": "Morninig",
+                    	"resourceId": "3",
+                    	"slotSerial": "445127",
+                    	"periodPart": "372"
+                    }]
