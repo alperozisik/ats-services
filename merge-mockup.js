@@ -44,10 +44,10 @@ function setDefaultValues(target) {
                 target[p] = prop = "21212";
                 break;
             case "clinicNo":
-                target[p] = prop = "421";
+                target[p] = prop = "483";
                 break;
             case "doctorId":
-                target[p] = prop = "10453";
+                target[p] = prop = "124";
                 break;
             case "yearMonth":
                 target[p] = prop = "2017-10";

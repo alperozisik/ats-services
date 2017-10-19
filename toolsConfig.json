@@ -28,7 +28,7 @@
 			"method": "GET",
 			"resource": "/clinic/:clinicNo/doctors",
 			"uriParameters": {
-				"clinicNo": "421"
+				"clinicNo": "483"
 			}
 		},
 		"getPatientPatientId": {
@@ -42,8 +42,8 @@
 			"method": "GET",
 			"resource": "/appointment/available/:clinicNo/:doctorId/:yearMonth/:day",
 			"uriParameters": {
-				"clinicNo": "421",
-				"doctorId": "10453",
+				"clinicNo": "483",
+				"doctorId": "124",
 				"yearMonth": "2017-10",
 				"day": "11"
 			}
@@ -87,8 +87,8 @@
 			"method": "GET",
 			"resource": "/appointment/available/:clinicNo/:doctorId/:yearMonth",
 			"uriParameters": {
-				"clinicNo": "421",
-				"doctorId": "10453",
+				"clinicNo": "483",
+				"doctorId": "124",
 				"yearMonth": "2017-10"
 			}
 		}
