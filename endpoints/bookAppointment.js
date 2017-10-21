@@ -2,7 +2,7 @@ const companyId = 1;
 const genericBodyHandler = require("../lib/generic-body-handler");
 const valueConverter = require("../lib/value-converter");
 const notificationText = {
-    en: "",
+    en: "Appointment has been booked",
     ar: "يتم حجز موعدك"
 };
 
@@ -18,6 +18,7 @@ module.exports = function(service, connectorName, validate) {
         var categorycode = req.body.categorycode;
         var patientId = req.body.patientId;
         var token = req.body.notificationToken || null;
+        console.log(req);
 
         oracleMobile.connectors.get(connectorName, `serviceWS/setBookingAppointments/${companyId}/${resourceId}/${slotSerial}/${patientId}/${categorycode}/${lang}`)
             .then(
@@ -36,7 +37,6 @@ module.exports = function(service, connectorName, validate) {
                             break;
 
                         case 2:
-                            res.status(201).json(response);
                             if (token) {
                                 let notification = {
                                     message: notificationText[req.get("language")],
@@ -49,12 +49,22 @@ module.exports = function(service, connectorName, validate) {
                                 };
                                 oracleMobile.notification.post(notification, context).then(
                                     function(result) {
+                                        res.status(201).json(response);
                                         console.log(result);
                                     },
                                     function(error) {
                                         console.error(error);
+                                        var newResponse = Object.assign({
+                                            notificationError: error
+                                        }, response);
+                                        res.status(207).json(newResponse);
+
                                     }
                                 );
+                            }
+                            else {
+                                console.warn("no notification token is provided by the client");
+                                res.status(201).json(response);
                             }
                             break;
                     }

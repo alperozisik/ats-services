@@ -841,3 +841,16 @@ mediaType: "application/json"
                     	"slotSerial": "445127",
                     	"periodPart": "372"
                     }]
+/notification:
+  displayName: Send Notification
+  post:
+    headers:
+      notificationToken:
+        displayName: notificationToken
+        type: string
+    body:
+      application/json:
+        example: |
+          {
+            "message": "text"
+          }

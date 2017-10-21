@@ -21,19 +21,54 @@
         "tempDirectory":"/tmp/mcs-deploy"
     },
     "tests":{
-        "postPatientLogin":{
-            "method":"POST",
-            "resource":"/patient/login",
-            "payload":{
-                "username":"smartface",
-                "password":"123456",
-                "deviceType":"iOS",
-                "notificationToken":"1"
+        "getAppointmentDoctorIdPeriodDate":{
+            "method":"GET",
+            "resource":"/appointment/:doctorId/:period/:date",
+            "uriParameters":{
+                "doctorId":"<PARAMETER_VALUE>",
+                "period":"<PARAMETER_VALUE>",
+                "date":"<PARAMETER_VALUE>"
+            }
+        },
+        "getLabResultsOrderNo":{
+            "method":"GET",
+            "resource":"/lab/results/:orderNo",
+            "uriParameters":{
+                "orderNo":"<PARAMETER_VALUE>"
             }
         },
         "getClinic":{
             "method":"GET",
             "resource":"/clinic"
+        },
+        "getPatientPatientIdTimeline":{
+            "method":"GET",
+            "resource":"/patient/:patientId/timeline",
+            "uriParameters":{
+                "patientId":"<PARAMETER_VALUE>"
+            }
+        },
+        "getPatientPatientId":{
+            "method":"GET",
+            "resource":"/patient/:patientId",
+            "uriParameters":{
+                "patientId":"<PARAMETER_VALUE>"
+            }
+        },
+        "getAppointmentCategory":{
+            "method":"GET",
+            "resource":"/appointment/category"
+        },
+        "getAppointmentPeriod":{
+            "method":"GET",
+            "resource":"/appointment/period"
+        },
+        "getClinicClinicNoDoctors":{
+            "method":"GET",
+            "resource":"/clinic/:clinicNo/doctors",
+            "uriParameters":{
+                "clinicNo":"<PARAMETER_VALUE>"
+            }
         },
         "postAppointment":{
             "method":"POST",
@@ -46,24 +81,21 @@
                 "notificationToken":"xxyyzz"
             }
         },
-        "getAppointmentPeriod":{
-            "method":"GET",
-            "resource":"/appointment/period"
-        },
-        "getAppointmentDoctorIdPeriodDate":{
-            "method":"GET",
-            "resource":"/appointment/:doctorId/:period/:date",
-            "uriParameters":{
-                "doctorId":"<PARAMETER_VALUE>",
-                "period":"<PARAMETER_VALUE>",
-                "date":"<PARAMETER_VALUE>"
+        "postNotification":{
+            "method":"POST",
+            "resource":"/notification",
+            "payload":{
+                "message":"text"
             }
         },
-        "getClinicClinicNoDoctors":{
-            "method":"GET",
-            "resource":"/clinic/:clinicNo/doctors",
-            "uriParameters":{
-                "clinicNo":"<PARAMETER_VALUE>"
+        "postPatientLogin":{
+            "method":"POST",
+            "resource":"/patient/login",
+            "payload":{
+                "username":"smartface",
+                "password":"123456",
+                "deviceType":"iOS",
+                "notificationToken":"1"
             }
         },
         "getAppointmentAvailableClinicNoDoctorIdYearMonth":{
@@ -74,31 +106,6 @@
                 "doctorId":"<PARAMETER_VALUE>",
                 "yearMonth":"<PARAMETER_VALUE>"
             }
-        },
-        "getLabResultsOrderNo":{
-            "method":"GET",
-            "resource":"/lab/results/:orderNo",
-            "uriParameters":{
-                "orderNo":"<PARAMETER_VALUE>"
-            }
-        },
-        "getPatientPatientId":{
-            "method":"GET",
-            "resource":"/patient/:patientId",
-            "uriParameters":{
-                "patientId":"<PARAMETER_VALUE>"
-            }
-        },
-        "getPatientPatientIdTimeline":{
-            "method":"GET",
-            "resource":"/patient/:patientId/timeline",
-            "uriParameters":{
-                "patientId":"<PARAMETER_VALUE>"
-            }
-        },
-        "getAppointmentCategory":{
-            "method":"GET",
-            "resource":"/appointment/category"
         }
     }
 }

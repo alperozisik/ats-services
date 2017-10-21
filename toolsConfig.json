@@ -20,19 +20,54 @@
 		"tempDirectory": "/tmp/mcs-deploy"
 	},
 	"tests": {
-		"postPatientLogin": {
-			"method": "POST",
-			"resource": "/patient/login",
-			"payload": {
-				"username": "smartface",
-				"password": "123456",
-				"deviceType": "iOS",
-				"notificationToken": "1"
+		"getAppointmentDoctorIdPeriodDate": {
+			"method": "GET",
+			"resource": "/appointment/:doctorId/:period/:date",
+			"uriParameters": {
+				"doctorId": "124",
+				"period": "446362",
+				"date": "2017-10-30"
+			}
+		},
+		"getLabResultsOrderNo": {
+			"method": "GET",
+			"resource": "/lab/results/:orderNo",
+			"uriParameters": {
+				"orderNo": "4046866"
 			}
 		},
 		"getClinic": {
 			"method": "GET",
 			"resource": "/clinic"
+		},
+		"getPatientPatientIdTimeline": {
+			"method": "GET",
+			"resource": "/patient/:patientId/timeline",
+			"uriParameters": {
+				"patientId": "21212"
+			}
+		},
+		"getPatientPatientId": {
+			"method": "GET",
+			"resource": "/patient/:patientId",
+			"uriParameters": {
+				"patientId": "21212"
+			}
+		},
+		"getAppointmentCategory": {
+			"method": "GET",
+			"resource": "/appointment/category"
+		},
+		"getAppointmentPeriod": {
+			"method": "GET",
+			"resource": "/appointment/period"
+		},
+		"getClinicClinicNoDoctors": {
+			"method": "GET",
+			"resource": "/clinic/:clinicNo/doctors",
+			"uriParameters": {
+				"clinicNo": "483"
+			}
 		},
 		"postAppointment": {
 			"method": "POST",
@@ -45,24 +80,21 @@
 				"notificationToken": "xxyyzz"
 			}
 		},
-		"getAppointmentPeriod": {
-			"method": "GET",
-			"resource": "/appointment/period"
-		},
-		"getAppointmentDoctorIdPeriodDate": {
-			"method": "GET",
-			"resource": "/appointment/:doctorId/:period/:date",
-			"uriParameters": {
-				"doctorId": "124",
-				"period": "446362",
-				"date": "2017-10-30"
+		"postNotification": {
+			"method": "POST",
+			"resource": "/notification",
+			"payload": {
+				"message": "text"
 			}
 		},
-		"getClinicClinicNoDoctors": {
-			"method": "GET",
-			"resource": "/clinic/:clinicNo/doctors",
-			"uriParameters": {
-				"clinicNo": "483"
+		"postPatientLogin": {
+			"method": "POST",
+			"resource": "/patient/login",
+			"payload": {
+				"username": "smartface",
+				"password": "123456",
+				"deviceType": "iOS",
+				"notificationToken": "3ce13955bc0741e02e3c5d01e7e1d8d7abd5c140b30007ceb814cc1860a6a8ec"
 			}
 		},
 		"getAppointmentAvailableClinicNoDoctorIdYearMonth": {
@@ -73,31 +105,6 @@
 				"doctorId": "124",
 				"yearMonth": "2017-10"
 			}
-		},
-		"getLabResultsOrderNo": {
-			"method": "GET",
-			"resource": "/lab/results/:orderNo",
-			"uriParameters": {
-				"orderNo": "4046866"
-			}
-		},
-		"getPatientPatientId": {
-			"method": "GET",
-			"resource": "/patient/:patientId",
-			"uriParameters": {
-				"patientId": "21212"
-			}
-		},
-		"getPatientPatientIdTimeline": {
-			"method": "GET",
-			"resource": "/patient/:patientId/timeline",
-			"uriParameters": {
-				"patientId": "21212"
-			}
-		},
-		"getAppointmentCategory": {
-			"method": "GET",
-			"resource": "/appointment/category"
 		}
 	}
 }
