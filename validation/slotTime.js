@@ -8,6 +8,6 @@ module.exports = {
     path: {
         clinicNo: Joi.string().required(),
         period: Joi.string().required(),
-        date: Joi.string().required().regex(/^(2\d{3})-([01]?\d)-([0-3]?\d)$/),
+        date: Joi.string().required().regex(/^([12]\d{3})-([01]?\d)-([0-3]?\d)$/),
     }
 };

@@ -1,6 +1,8 @@
+/*globals HijriDate */
 const genericBodyHandler = require("../lib/generic-body-handler");
 const valueConverter = require("../lib/value-converter");
-const reDate = /^(2\d{3})-([01]?\d)-([0-3]?\d)$/;
+const reDate = /^([12]\d{3})-([01]?\d)-([0-3]?\d)$/;
+require("hijri-date");
 
 module.exports = function(service, connectorName, validate) {
     service.get('/mobile/custom/ats/appointment/:doctorId/:period/:date', validate, function(req, res) {
@@ -10,8 +12,20 @@ module.exports = function(service, connectorName, validate) {
         reDate.lastIndex = 0;
         var dateCapture = reDate.exec(req.params.date);
         var year = Number(dateCapture[1]);
-        var month = pad(Number(dateCapture[2]), 2);
-        var day = pad(Number(dateCapture[3]), 2);
+        var month = Number(dateCapture[2]);
+        var day = Number(dateCapture[3]);
+
+        if (year < 1900) { //then it is hijri, need to convert
+            let hjDate = new HijriDate(year, month, day);
+            let gregDate = hjDate.toGregorian();
+            year = gregDate.getFullYear();
+            month = gregDate.getMonth() + 1;
+            day = gregDate.getDate();
+        }
+        month = pad(month, 2);
+        day = pad(day, 2);
+
+
         var slotDate = `${day}-${month}-${year}`;
         var lang = req.get("language") === "ar" ? 2 : 1;
 

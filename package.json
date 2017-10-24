@@ -6,6 +6,7 @@
   "dependencies": {
     "express-validation": "^1.0.2",
     "fs-extra": "^4.0.2",
+    "hijri-date": "^0.2.2",
     "joi": "^13.0.0"
   },
   "oracleMobile": {
